@@ -30,6 +30,8 @@ Activar entorno virtual
 ------------------------------------------
 Instalar todas las dependencias 
 
+pip install gunicorn
+
 pip install -r requirements.txt
 -----------------------------------------
 
