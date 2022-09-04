@@ -38,14 +38,5 @@ def wait_time(silence_ranges, audio_duration):
     return initial_silence, initial_percentage
 
 
-def audio_extension(req_audio):
-    # Validar extensión de audio
-    extension = req_audio.filename.split(".")[-1]
-    if extension == "mp3":
-        audio = AudioSegment.from_mp3(req_audio)
-    elif extension == "wav":
-        audio = AudioSegment.from_wav(req_audio)
-    else:
-        return {'msg': 'Formato no compatible, Pruebe con .mp3 y .wav'}
+    
 
-    return audio

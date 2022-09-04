@@ -1,23 +1,29 @@
 from flask import Flask, request
 from flask_pymongo import PyMongo
 from pydub import silence
-from function import audio_extension, total_silence, final_silence, wait_time, audio_extension
+from function import total_silence, final_silence, wait_time
 from flask_cors import CORS
+from pydub import AudioSegment
 
 app = Flask(__name__)
-CORS( app )
+CORS(app)
+app.config['MONGO_URI'] = 'mongodb+srv://sebachaa:125230Seba.@firstcluster.dxsmkyn.mongodb.net/test'
 
-#Usar Mongo URI pripio con nombre  al final 
-app.config['MONGO_URI'] = 'mongodb+srv://system:system@nodejs-cap9.dgqpz.mongodb.net/calidadAudio'
-
-mongo = PyMongo( app )
+mongo = PyMongo(app)
 
 
 @app.route('/silence', methods=['POST'])
 def silenceAPI():
     # Audio request
     req_audio = request.files['files']
-    audio = audio_extension(req_audio)
+    extension = req_audio.filename.split(".")[-1]
+    if extension == "mp3":
+        audio = AudioSegment.from_mp3(req_audio)
+    elif extension == "wav":
+        audio = AudioSegment.from_wav(req_audio)
+    else:
+        return {'msg': 'Formato no compatible, Pruebe con .mp3 y .wav'}
+
     silence_detect = silence.detect_silence(
         audio, min_silence_len=1000, silence_thresh=audio.dBFS-6)
 
@@ -69,8 +75,8 @@ def silenceAPI():
         return response
 
     else:
-        return {'msg': 'error'}
+        return {'msg': 'Error al calcular silencio. Consultar con Admin'}
 
 
 if __name__ == "__main__":
-    app.run( debug = False )  # Cambiar a false
+    app.run(debug=True)  # Cambiar a false
