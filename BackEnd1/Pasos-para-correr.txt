@@ -1,0 +1,47 @@
+ 
+1) Instalar la libreria version full para gestion de audios
+
+    https://www.gyan.dev/ffmpeg/builds/
+
+    => borrar el nombre de la carpeta descargada y dejar solo ffmpeg 
+    => mover carpeta a disco C:/
+
+2) En variables de entorno de windowns:
+
+    => agregar nueva variable de sistema 
+    => ruta de la carpeta ubicada en C:/ffmpeg/bin 
+
+--------------------------------------------------------------------------------------
+
+3) Para ejecutar scripts de la powerShell
+
+    en PowerShell como administrador: set-executionpolicy remotesigned
+
+--------------------------------------------------------------------------------------
+ 
+4) Para crear ambiente virutal 
+
+    => pip install virtualenv
+
+    => virtualenv nombre
+
+
+5) Activar entorno virtual 
+
+    => .\nombre/Scripts\activate  (en PowerSheel)
+    => .\nombre/Scripts\activate.bat ( en cmd )
+
+---------------------------------------------------------------------------------------
+
+6) Instalar todas las dependencias 
+
+    => pip install -r requirements.txt
+-----------------------------------------
+
+7) Para correr la app 
+
+    => python ./src/silenceAPI.py
+
+------------------------------------------
+
+
